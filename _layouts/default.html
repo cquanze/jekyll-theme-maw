@@ -1,0 +1,16 @@
+---
+show-vcard: true
+show-nav: true
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  {% include head.html %}
+  <body>
+    {% include header.html show-vcard=layout.show-vcard show-nav=layout.show-nav %}
+    <main>
+      {{ content }}
+    </main>
+    {% include footer.html %}
+  </body>
+</html>

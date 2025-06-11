@@ -1,0 +1,52 @@
+title: "John Doe"
+description: "Personal web site and profile page of John Doe, a researcher and artist."
+keywords: ["John Doe", "jdoe", "homepage", "personal", "resume", "CV"]
+
+author:
+  name: "John Doe"
+  position: "Researcher"
+  affiliation: "Organization"
+  image:
+    path: "/assets/img/qr.png"
+    alt: "QR Code"
+
+  ## Links to scholar profiles
+  # Supported types: google-scholar, semantic-scholar, dblp, orcid
+  scholar-links:
+    - type: google-scholar
+      url: https://scholar.google.com/citations?user=A&hl=en
+    - type: semantic-scholar
+      url: https://www.semanticscholar.org/author/John-Doe/00000
+    - type: orcid
+      orcid: 0000-0000-0000-0000
+
+  ## Links to portfolio websites
+  # Supported types: artstation, adobe, deviantart
+  portfolio-links:
+    - type: artstation
+      url: https://artstation.com/
+    - type: deviantart
+      url: https://deviantart.com/
+
+  ## Links to social media
+  # Supported types: twitter, github, bluesky, linkedin, instagram
+  socials:
+    - type: twitter
+      handle: johndoe
+    - type: github
+      handle: johndoe
+    - type: linkedin
+      handle: johndoe
+    - type: bluesky
+      handle: johndoe.bsky.app
+
+# Where to pull assets from
+assets:
+  dirname: assets
+  baseurl: /assets/
+  sources:
+    - assets
+
+# Plugins
+plugins:
+  - jekyll-sitemap

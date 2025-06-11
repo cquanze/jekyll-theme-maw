@@ -1,0 +1,7 @@
+<aside>
+  <ul class="nav">
+    {% for link in include.portfolio-links %}
+      <li><a href="{{ link.url }}" target="_blank"><i class="ai ai-{{ link.type }}-square ai-3x"></i></a></li>
+    {% endfor %}
+  </ul>
+</aside>

@@ -1,0 +1,30 @@
+<article class="publication">
+  <div class="title">
+    {% if include.pub.url %}
+    <a href="{{ include.pub.url }}" target="_blank">{{ include.pub.title | escape }}</a>
+    {% else %}
+      {{ include.pub.title | escape }}
+    {% endif %}
+  </div>
+  <div class="authors">
+    {% for author in include.pub.authors %}
+      {% if author.flags.size > 0 %}<span class="{% for flag in author.flags %}{{ flag }}{% endfor %}">{% endif %}
+      {{ author.name }}{% if forloop.last == false %},{% endif %}
+      {% if author.flags.size > 0 %}</span>{% endif %}
+    {% endfor %}
+  </div>
+  <div class="links">
+    {% if include.pub.venue %}
+    <span class="venue peer-reviewed">{{ include.pub.venue }}</span>
+    {% endif %}
+    {% if include.pub.pdf %}
+    <a href="{{ include.pub.pdf }}" target="_blank">PDF</a>
+    {% endif %}
+    {% if include.pub.code %}
+    <a href="{{ include.pub.code }}" target="_blank">Code</a>
+    {% endif %}
+    {% if include.pub.data %}
+    <a href="{{ include.pub.data }}" target="_blank">Data</a>
+    {% endif %}
+  </div>
+</article>

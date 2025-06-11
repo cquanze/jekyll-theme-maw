@@ -1,0 +1,31 @@
+<section id="contact" class="card">
+  {% if include.card.image %}
+  <div class="picture">
+    <img src="{{ include.card.image.path | prepend: site.baseurl }}" alt="{{ include.card.image.alt }}" />
+  </div>
+  {% endif %}
+  <h1 class="fullname">{{ include.card.name }}</h1>
+  <p class="position">{{ include.card.position }}</p>
+  <p class="affiliation">{{ include.card.affiliation }}</p>
+  <address class="socials">
+    <p class="email"></p>
+    {% if include.card.socials.size > 0 %}
+    <ul class="social nav">
+      {% for sns in include.card.socials %}
+        {% case sns.type %}
+          {% when "github" %}
+            <li><a href="https://github.com/{{ sns.handle }}" target="_blank" title="Github"><i class="fa-brands fa-github fa-2x" title="Github"></i></a></li>
+          {% when "twitter" %}
+            <li><a href="https://twitter.com/{{ sns.handle }}" target="_blank" title="Twitter"><i class="fa-brands fa-twitter fa-2x" title="Twitter"></i></a></li>
+          {% when "linkedin" %}
+            <li><a href="https://linkedin.com/in/{{ sns.handle }}" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin fa-2x" title="LinkedIn"></i></a></li>
+          {% when "bluesky" %}
+            <li><a href="https://bsky.app/profile/{{ sns.handle }}" target="_blank" title="Bluesky"><i class="fa-brands fa-bluesky fa-2x" title="Bluesky"></i></a></li>
+          {% else %}
+            <li><a href="{{ sns.url }}" target="_blank" title="{{ sns.title }}"><i class="fa-brands fa-{{ sns.type }} fa-2x" title="{{ sns.title }}"></i></a></li>
+        {% endcase %}
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </address>
+</section>

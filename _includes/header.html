@@ -1,0 +1,8 @@
+<header>
+  {% if include.show-vcard == true %}
+    {% include header/vcard.html card=site.author %}
+  {% endif %}
+  {% if include.show-nav == true %}
+    {% include header/nav.html %}
+  {% endif %}
+</header>

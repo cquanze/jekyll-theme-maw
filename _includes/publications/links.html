@@ -1,0 +1,11 @@
+<aside>
+  <ul class="nav">
+    {% for link in include.scholar-links %}
+      {% if link.type == "orcid" %}
+      <li><a href="https://orcid.org/{{ link.orcid }}" target="_blank"><i class="ai ai-orcid-square ai-3x"></i></a></li>
+      {% else %}
+      <li><a href="{{ link.url }}" target="_blank"><i class="ai ai-{{ link.type }}-square ai-3x"></i></a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</aside>

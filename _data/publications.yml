@@ -1,0 +1,19 @@
+- title: "MAW: A Minimal Academic Website Template"
+  venue: "GITHUB"
+  year: 2025
+  url: "#"
+  pdf: "#"
+  preprint: false
+  authors:
+    - name: John Doe
+      flags: [ "me" ]
+
+- title: "Doc-MAW: Documentation for the Minimal Academic Website Template"
+  venue: "GITHUB DOCS"
+  year: 2025
+  url: "#"
+  preprint: true
+  authors:
+    - name: John Doe
+      flags: [ "me" ]
+    - name: Jekyll

@@ -1,0 +1,7 @@
+<nav class="as-buttons">
+  <ul>
+    {% for link in site.data.nav %}
+    <li><a href="{% if link.path %}{{ link.path | prepend: site.baseurl }}{% else %}{{ link.url }}{% endif %}">{{ link.title }}</a></li>
+    {% endfor %}
+  </ul>
+</nav>
