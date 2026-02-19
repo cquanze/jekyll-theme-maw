@@ -1,0 +1,8 @@
+## Links to scholar profiles
+# Supported types: google-scholar, semantic-scholar, dblp, orcid
+- type: google-scholar
+  url: https://scholar.google.com/citations?user=A&hl=en
+- type: semantic-scholar
+  url: https://www.semanticscholar.org/author/John-Doe/00000
+- type: orcid
+  orcid: 0000-0000-0000-0000

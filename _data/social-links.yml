@@ -1,0 +1,10 @@
+## Links to social media
+# Supported types: twitter, github, bluesky, linkedin, instagram
+- type: twitter
+  handle: johndoe
+- type: github
+  handle: johndoe
+- type: linkedin
+  handle: johndoe
+- type: bluesky
+  handle: johndoe.bsky.app

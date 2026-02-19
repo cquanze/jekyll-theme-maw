@@ -1,0 +1,17 @@
+---
+layout: default
+---
+
+{% if content %}
+<section class="introduction">
+  {{ content }}
+</section>
+{% endif %}
+
+<section class="projects">
+  <h1>Projects</h1>
+  {% if site.projects and site.projects.size > 0 %}
+  {% else %}
+  <p><em>There are no projects at the moment.</em></p>
+  {% endif %}
+</section>

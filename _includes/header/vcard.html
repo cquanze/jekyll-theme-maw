@@ -7,11 +7,15 @@
   <h1 class="fullname">{{ include.card.name }}</h1>
   <p class="position">{{ include.card.position }}</p>
   <p class="affiliation">{{ include.card.affiliation }}</p>
+  {% if include.card.email %}
+  <address class="email">
+    <p class="email">{{ include.card.email }}</p>
+  </address>
+  {% endif %}
   <address class="socials">
-    <p class="email"></p>
-    {% if include.card.socials.size > 0 %}
+    {% if site.data.social-links.size > 0 %}
     <ul class="social nav">
-      {% for sns in include.card.socials %}
+      {% for sns in site.data.social-links %}
         {% case sns.type %}
           {% when "github" %}
             <li><a href="https://github.com/{{ sns.handle }}" target="_blank" title="Github"><i class="fa-brands fa-github fa-2x" title="Github"></i></a></li>

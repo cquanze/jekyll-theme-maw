@@ -1,0 +1,22 @@
+---
+layout: default
+---
+
+<section class="posts">
+  {% if page.title %}
+  <h1>{{ page.title }}</h1>
+  {% endif %}
+
+  {{ content }}
+
+  <h2>Posts</h2>
+  {% if site.posts and site.posts.size > 0 %}
+  <ul>
+    {% for post in site.posts limit: page.max-posts  %}
+      <li><small>{{ post.date | date: "%Y-%m-%d" }}</small> <a href="{{ post.url | absolute_url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p><em>There are no posts to show at the moment.</em></p>
+  {% endif %}
+</section>

@@ -16,6 +16,7 @@
   --accent-bg: #f2e5bc;
   --text: #3c3836;
   --text-light: #282828;
+  --text-white: #ebdbb2;
 
   --border: #ebdbb2;
 
@@ -42,6 +43,7 @@
   --publication-A: #5a830c;
   --publication-B: #8b6400;
   --publication-C: #00008B;
+  --publication-preprint: #d51d1d;
 }
 
 /* Dark theme */
@@ -52,6 +54,7 @@
     --accent-bg: #32302f;
     --text: #ebdbb2;
     --text-light: #fbf1c7;
+    --text-white: #ebdbb2;
 
     --accent-kw: #cc241d;
     --accent-cm: #98971a;
@@ -271,14 +274,14 @@ input:enabled:focus-visible:where(
 
 /* Format navigation */
 header nav {
-  font-size: 1rem;
+  font-size: 0.9rem;
   line-height: 2;
   padding: 1rem 0 0 0;
 }
 
 /* Use flexbox to allow items to wrap, as needed */
-header nav ul,
-header nav ol,
+nav ul,
+nav ol,
 ul.nav,
 ol.nav {
   align-content: space-around;
@@ -290,58 +293,79 @@ ol.nav {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  gap: 0.25rem;
+
+  /* List items are inline elements, make them behave more like blocks */
+  li {
+    display: inline-block;
+    margin: 0 0.125rem;
+  }
 }
 
 header nav ul,
 header nav ol {
   flex-direction: column;
+  gap: 0.5rem;
 }
 
-/* List items are inline elements, make them behave more like blocks */
-header nav ul li,
-header nav ol li,
-ul.nav li,
-ol.nav li {
-  display: inline-block;
-  margin: 0 0.125rem;
-}
+nav, .nav {
+  a, a:visited {
+    margin: 0 0.25rem;
+    border-radius: var(--standard-border-radius);
+    color: var(--text);
+    display: inline-block;
+    text-decoration: none;
+  }
 
-header nav a,
-header nav a:visited,
-.nav a,
-.nav a:visited {
-  margin: 0 0.25rem;
-  border-radius: var(--standard-border-radius);
-  color: var(--text);
-  display: inline-block;
-  text-decoration: none;
-}
+  a:hover,
+  a.current,
+  a[aria-current="page"],
+  a[aria-current="true"] {
+    border-color: var(--accent-obj);
+    color: var(--accent-obj);
+    cursor: pointer;
+  }
 
-.nav.as-buttons a,
-nav.as-buttons a {
-  margin: 0rem 0.5rem;
-  padding: 0.5rem 1rem;
-}
+  &.as-buttons a {
+    margin: 0rem 0.5rem;
+    padding: 0.5rem 1rem;
 
-header nav a:hover,
-header nav a.current,
-header nav a[aria-current="page"],
-header nav a[aria-current="true"],
-.nav a:hover,
-.nav a.current,
-.nav a[aria-current="page"],
-.nav a[aria-current="true"] {
-  border-color: var(--accent-obj);
-  color: var(--accent-obj);
-  cursor: pointer;
-}
+    &:hover {
+      color: var(--bg);
+      background-color: var(--accent-obj);
+    }
+  }
+  a.profile-link-icon {
+    display: inline-block;
+    width: 2.625rem;
+    height: 2.625rem;
+    background-color: var(--text);
+    color: var(--bg);
+    border-radius: 0.25rem;
 
-.nav.as-buttons a:hover,
-nav.as-buttons a:hover {
-  color: var(--bg);
-  background-color: var(--accent-obj);
-}
+    text-align: center;
+    line-height: 2.625rem;
+    font-size: 2rem;
 
+    &:visited {
+      color: var(--bg);
+    }
+  }
+
+  &.inv {
+    a, a:visited {
+      color: var(--bg);
+      background-color: var(--text);
+    }
+    a:hover,
+    a.current,
+    a[aria-current="page"],
+    a[aria-current="true"] {
+      border-color: var(--bg);
+      background-color: var(--accent-obj);
+    }
+  }
+}
 
 /* Reduce nav side on mobile */
 @media only screen and (max-width: 720px) {
@@ -361,12 +385,12 @@ details, pre, progress {
 
 aside {
   font-size: 1rem;
-  width: 30%;
   padding: 0 15px;
   margin-inline-start: 15px;
   float: right;
   border-right: 3px solid var(--accent-obj);
 }
+
 *[dir="rtl"] aside {
   float: left;
   border-left: 3px solid var(--accent-obj);
@@ -585,10 +609,10 @@ mark {
   border-radius: var(--standard-border-radius);
   background-color: var(--marked);
   color: black;
-}
 
-mark a {
-  color: var(--accent-def);
+  a {
+    color: var(--accent-def);
+  }
 }
 
 img,
@@ -602,12 +626,12 @@ figure {
   margin: 0;
   display: block;
   overflow-x: auto;
-}
 
-figure > img,
-figure > picture > img {
+  &> img,
+  &> picture > img {
   display: block;
   margin-inline: auto;
+  }
 }
 
 figcaption {
@@ -662,14 +686,14 @@ pre {
   max-width: 100%;
   overflow: auto;
   color: var(--preformatted);
-}
 
-/* Fix embedded code within pre */
-pre code {
-  color: var(--preformatted);
-  background: none;
-  margin: 0;
-  padding: 0;
+  /* Fix embedded code within pre */
+  code {
+    color: var(--preformatted);
+    background: none;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 /* Progress bars */
@@ -677,43 +701,44 @@ pre code {
 /* cannot combine vendor-specific selectors */
 progress {
   width: 100%;
-}
 
-progress:indeterminate {
-  background-color: var(--accent-bg);
-}
+  &:indeterminate {
+    background-color: var(--accent-bg);
+  }
 
-progress::-webkit-progress-bar {
-  border-radius: var(--standard-border-radius);
-  background-color: var(--accent-bg);
-}
+  &::-webkit-progress-bar {
+    border-radius: var(--standard-border-radius);
+    background-color: var(--accent-bg);
+  }
 
-progress::-webkit-progress-value {
-  border-radius: var(--standard-border-radius);
-  background-color: var(--accent-obj);
-}
+  &::-webkit-progress-value {
+    border-radius: var(--standard-border-radius);
+    background-color: var(--accent-obj);
+  }
 
-progress::-moz-progress-bar {
-  border-radius: var(--standard-border-radius);
-  background-color: var(--accent-obj);
-  transition-property: width;
-  transition-duration: 0.3s;
-}
+  &::-moz-progress-bar {
+    border-radius: var(--standard-border-radius);
+    background-color: var(--accent-obj);
+    transition-property: width;
+    transition-duration: 0.3s;
+  }
 
-progress:indeterminate::-moz-progress-bar {
-  background-color: var(--accent-bg);
+  &:indeterminate::-moz-progress-bar {
+    background-color: var(--accent-bg);
+  }
 }
 
 dialog {
   background-color: var(--bg);
   max-width: 40rem;
   margin: auto;
+
+  &::backdrop {
+    background-color: var(--bg);
+    opacity: 0.8;
+  }
 }
 
-dialog::backdrop {
-  background-color: var(--bg);
-  opacity: 0.8;
-}
 
 @media only screen and (max-width: 720px) {
   dialog {
@@ -792,12 +817,22 @@ sub {
 }
 
 /** Custom Styles **/
-#contact .picture {
-  padding: 2rem 3rem 2rem 3rem;
-}
+#contact {
+  .picture {
+    padding: 2rem 3rem 2rem 3rem;
+  }
 
-#contact address.socials {
-  padding: 1rem 0;
+  address.socials {
+    padding: 1rem 0;
+
+    .nav {
+      justify-content: space-evenly;
+    }
+  }
+  address.email {
+    font-style: italic;
+    font-size: 1rem;
+  }
 }
 
 .semantic {
@@ -813,34 +848,41 @@ sub {
 
 .publication {
   margin-bottom: 0.75rem;
-}
 
-.publication .authors {
-  font-size: 0.9rem;
-  font-style: italic;
-}
+  .authors {
+    font-size: 0.9rem;
+    font-style: italic;
 
-.publication .authors span.me {
-  font-weight: bold;
-  font-style: normal;
-}
+    span.me {
+      font-weight: bold;
+      font-style: normal;
+    }
+  }
 
-.publication .links span,
-.publication .links a {
-  text-decoration: none;
-  font-size: 0.75rem;
-  line-height: 1rem;
-  color: var(--text);
-  border: 1px solid var(--text);
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  padding-top: 0.1rem;
-  padding-bottom: 0.1rem;
-  cursor: pointer;
-  user-select: none;
-}
+  .links {
+    span, a {
+      text-decoration: none;
+      font-size: 0.75rem;
+      line-height: 1rem;
+      color: var(--text);
+      border: 1px solid var(--text);
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      padding-top: 0.1rem;
+      padding-bottom: 0.1rem;
+      cursor: pointer;
+      user-select: none;
+    }
 
-.publication .links .venue.peer-reviewed {
-  background-color: var(--publication-A);
-  border-color: var(--publication-A);
+    .venue.peer-reviewed {
+      background-color: var(--publication-A);
+      border-color: var(--publication-A);
+      color: var(--text-white);
+    }
+    .venue.preprint {
+      background-color: var(--publication-preprint);
+      border-color: var(--publication-preprint);
+      color: var(--text-white);
+    }
+  }
 }

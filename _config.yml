@@ -6,39 +6,13 @@ author:
   name: "John Doe"
   position: "Researcher"
   affiliation: "Organization"
+  email: "john (dot) doe (at) mail (dot) com"
   image:
     path: "/assets/img/qr.png"
     alt: "QR Code"
 
-  ## Links to scholar profiles
-  # Supported types: google-scholar, semantic-scholar, dblp, orcid
-  scholar-links:
-    - type: google-scholar
-      url: https://scholar.google.com/citations?user=A&hl=en
-    - type: semantic-scholar
-      url: https://www.semanticscholar.org/author/John-Doe/00000
-    - type: orcid
-      orcid: 0000-0000-0000-0000
-
-  ## Links to portfolio websites
-  # Supported types: artstation, adobe, deviantart
-  portfolio-links:
-    - type: artstation
-      url: https://artstation.com/
-    - type: deviantart
-      url: https://deviantart.com/
-
-  ## Links to social media
-  # Supported types: twitter, github, bluesky, linkedin, instagram
-  socials:
-    - type: twitter
-      handle: johndoe
-    - type: github
-      handle: johndoe
-    - type: linkedin
-      handle: johndoe
-    - type: bluesky
-      handle: johndoe.bsky.app
+footer:
+  show-theme-source: true
 
 # Where to pull assets from
 assets:
@@ -47,6 +21,36 @@ assets:
   sources:
     - assets
 
+# Collections
+collections:
+  publications:
+    output: true
+    permalink: /publications/:year/:title/
+  projects:
+    output: true
+    permalink: /project/:name/
+  portfolio:
+    output: true
+  posts:
+    output: true
+    permalink: /blog/:year/:month/:day/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: publications
+    values:
+      layout: publication
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: project
+  - scope:
+      path: ""
+      type: portfolio
+    values:
+      layout: portfolio-item
 # Plugins
 plugins:
   - jekyll-sitemap

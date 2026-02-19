@@ -1,10 +1,16 @@
 <article class="publication">
   <div class="title">
-    {% if include.pub.url %}
-    <a href="{{ include.pub.url }}" target="_blank">{{ include.pub.title | escape }}</a>
+    {% unless include.link-to == "url" %}
+      {% if include.pub.link %}
+        <a href="{{ include.pub.link }}">{{ include.pub.title | escape }}</a>
+      {% elsif include.pub.url %}
+        <a href="{{ include.pub.url | absolute_url }}" rel="permalink">{{ include.pub.title | escape }}</a>
+      {% else %}
+        {{ include.pub.title | escape }}
+      {% endif %}
     {% else %}
-      {{ include.pub.title | escape }}
-    {% endif %}
+      <a href="{{ include.pub.url | absolute_url }}" rel="permalink">{{ include.pub.title | escape }}</a>
+    {% endunless %}
   </div>
   <div class="authors">
     {% for author in include.pub.authors %}
@@ -15,7 +21,7 @@
   </div>
   <div class="links">
     {% if include.pub.venue %}
-    <span class="venue peer-reviewed">{{ include.pub.venue }}</span>
+    <span class="venue {% unless include.pub.preprint %}peer-reviewed{% else %}preprint{% endunless %}">{{ include.pub.venue }}</span>
     {% endif %}
     {% if include.pub.pdf %}
     <a href="{{ include.pub.pdf }}" target="_blank">PDF</a>
@@ -25,6 +31,9 @@
     {% endif %}
     {% if include.pub.data %}
     <a href="{{ include.pub.data }}" target="_blank">Data</a>
+    {% endif %}
+    {% if include.pub.artifact %}
+    <a href="{{ include.pub.artifact }}" target="_blank">Artifact</a>
     {% endif %}
   </div>
 </article>

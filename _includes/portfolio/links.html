@@ -1,7 +1,9 @@
+{% if site.data.portfolio-links.size > 0 %}
 <aside>
-  <ul class="nav">
-    {% for link in include.portfolio-links %}
-      <li><a href="{{ link.url }}" target="_blank"><i class="ai ai-{{ link.type }}-square ai-3x"></i></a></li>
+  <ul class="nav inv">
+    {% for link in site.data.portfolio-links %}
+      <li><a href="{{ link.url }}" target="_blank" class="profile-link-icon" aria-label="Link to portfolio on {{ link.type }}"><i class="fa-brands fa-{{ link.type }}"></i></a></li>
     {% endfor %}
   </ul>
 </aside>
+{% endif %}

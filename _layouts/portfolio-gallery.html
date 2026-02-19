@@ -1,0 +1,17 @@
+---
+layout: default
+---
+
+{% if content %}
+<section class="introduction">
+  {{ content }}
+</section>
+{% endif %}
+
+<section class="portfolio">
+  <h1>Gallery</h1>
+  {% if site.portfolio and site.portfolio.size > 0 %}
+  {% else %}
+  <p><em>There are no gallery items at the moment.</em></p>
+  {% endif %}
+</section>

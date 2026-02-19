@@ -1,1 +1,6 @@
-<footer>Last built {{ site.time | date : "%Y-%m-%d"}}</footer>
+<footer>
+  Last built {{ site.time | date : "%Y-%m-%d" }}
+  {% if site.footer.show-theme-source %}
+  | Built on Jekyll with the <a href="https://github.com/cquanze/jekyll-theme-maw/" rel="nofollow" target="_blank">Minimal Academic Theme</a>
+  {% endif %}
+</footer>

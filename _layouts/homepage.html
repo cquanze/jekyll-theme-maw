@@ -1,0 +1,81 @@
+---
+layout: default
+sections:
+  - intro
+  - posts
+  - publications
+  - portfolio
+---
+
+{% assign pubs-cutoff-year = page.collapse-pubs-before | default: 0 %}
+{% for section in page.sections %}
+  {% if section == "intro"%}
+    <section class="introduction">
+      {{ content }}
+    </section>
+
+  {% elsif section == "posts" %}
+    <section id="blog" class="posts">
+      <h1>Blog</h1>
+      {% if site.posts and site.posts.size > 0 %}
+      <ul>
+      {% for post in site.posts limit: page.max-posts %}
+        <li><small>{{ post.date | date: "%Y-%m-%d" }}</small> <a href="{{ post.url | absolute_url }}" rel="permalink">{{ post.title }}</a></li>
+      {% endfor %}
+      </ul>
+      {% else %}
+      <p><em>There are no posts at the moment.</em></p>
+      {% endif %}
+    </section>
+
+  {% elsif section == "publications" %}
+    <section id="publications" class="publications">
+      <h1>
+        Publications
+        {% include publications/links.html %}
+      </h1>
+      {% if site.publications and site.publications.size > 0 %}
+      <section class="bibliography no-style">
+        {% assign grouped-publications = site.publications | reverse | group_by: 'year' | sort: 'name' | reverse %}
+        {% for group in grouped-publications %}
+          {% assign year = group.name | to_integer %}
+          {% if year >= pubs-cutoff-year %}
+            <h3>{{ group.name }}</h3>
+            {% for publication in group.items %}
+            {% include publications/biblio.html pub=publication %}
+            {% endfor %}
+          {% else %}
+            {% unless has-rendered-last-group-title %}
+              <h3>~{{ group.name }}</h3>
+              {% assign has-rendered-last-group-title = true %}
+            {% endunless %}
+            {% for publication in group.items %}
+            {% include publications/biblio.html pub=publication %}
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      </section>
+      {% else %}
+      <p><em>There are no publications at the moment.</em></p>
+      {% endif %}
+    </section>
+
+  {% elsif section == "portfolio" %}
+    <section id="portfolio">
+      <h1>
+        Gallery
+        {% include portfolio/links.html %}
+      </h1>
+      {% if site.portfolio and site.portfolio.size > 0 %}
+      {% else %}
+      <p><em>There are no gallery items at the moment.</em></p>
+      {% endif %}
+    </section>
+
+  {% else %}
+    <section class="content">
+      {{ content }}
+    </section>
+  {% endif %}
+
+{% endfor %}
